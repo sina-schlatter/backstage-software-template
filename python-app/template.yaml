@@ -41,20 +41,25 @@ spec:
           name: ${{ parameters.name }}
           owner: ${{ parameters.owner }}
 
-    - id: fetch-docs
-      name: Fetch Docs
-      action: fetch:plain
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
       input:
-        targetPath: ./community
-        url: https://github.com/backstage/community/tree/main/backstage-community-sessions
+        url: ./template
+        values:
+          app_name: ${{parameters.component_id}}
+          app_env: ${{parameters.environment}}
 
     - id: publish
       name: Publish
       action: publish:github
       input:
-        allowedHosts: ['github.com']
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+        allowedHosts:
+          - github.com
+        description: This is ${{ parameters.component_id }}
+        repoUrl: github.com?owner=sina-schlatter&repo=${{parameters.component_id}}
+        protectDefaultBranch: false
+        repoVisibility: public
 
     - id: register
       name: Register
