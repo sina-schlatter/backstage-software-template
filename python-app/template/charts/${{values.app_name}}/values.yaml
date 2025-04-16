@@ -1,0 +1,55 @@
+replicaCount: 1
+image:
+  repository: sina2012/${{values.app_name}}
+  pullPolicy: IfNotPresent
+  tag: ${{values.app_name}}-${{values.app_env}}-latest
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+serviceAccount:
+  create: false
+  automount: true
+  annotations: {}
+  name: ""
+podAnnotations: {}
+podLabels: {}
+podSecurityContext: {}
+securityContext: {}
+service:
+  type: NodePort
+  port: 5000
+hostPort:
+  enabled: true
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: sina-dev.labul.sva.de # has to be adjusted for prod and dev later
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+resources: {}
+livenessProbe:
+  httpGet:
+    path: /api/v1/healthz
+    port: 5000
+  initialDelaySeconds: 3
+  periodSeconds: 10
+readinessProbe:
+  httpGet:
+    path: /api/v1/healthz
+    port: 5000
+  initialDelaySeconds: 3
+  periodSeconds: 10
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+volumes: []
+volumeMounts: []
+nodeSelector: {}
+tolerations: []
+affinity: {}
