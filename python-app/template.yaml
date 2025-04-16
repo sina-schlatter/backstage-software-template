@@ -32,14 +32,6 @@ spec:
 
   # here's the steps that are executed in series in the scaffolder backend
   steps:
-    - id: fetch-base
-      name: Fetch Base
-      action: fetch:template
-      input:
-        url: ./template
-        values:
-          name: ${{ parameters.name }}
-          owner: ${{ parameters.owner }}
 
     - id: fetch-base
       name: Fetch Base
@@ -69,10 +61,10 @@ spec:
         catalogInfoPath: '/catalog-info.yaml'
 
   # some outputs which are saved along with the job for use in the frontend
-  output:
-    links:
-      - title: Repository
-        url: ${{ steps['publish'].output.remoteUrl }}
-      - title: Open in catalog
-        icon: catalog
-        entityRef: ${{ steps['register'].output.entityRef }}
+  # output:
+  #   links:
+  #     - title: Repository
+  #       url: ${{ steps['publish'].output.remoteUrl }}
+  #     - title: Open in catalog
+  #       icon: catalog
+  #       entityRef: ${{ steps['register'].output.entityRef }}
