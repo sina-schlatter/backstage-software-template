@@ -5,7 +5,7 @@ metadata:
   description: This python app displays the time - named ${{values.app_name}}.
   # Example for optional annotations
   annotations:
-    github.com/project-slug: sina-schlatter/${{values.app_name}}
+    github.com/project-slug: backstage-sina/${{values.app_name}}
     backstage.io/techdocs-ref: dir:.
 spec:
   type: service
