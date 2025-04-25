@@ -8,4 +8,4 @@ This application has two endpoints:
 
 You can access the app by accessing this URL:
 
-`<YOUR-IP-ADDRESS>/api/v1/info`
+`<YOUR-HOST-NAME>/api/v1/info`
